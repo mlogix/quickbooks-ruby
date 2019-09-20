@@ -26,7 +26,7 @@ module Quickbooks
       xml_accessor :auto_doc_number, :from => 'AutoDocNumber' # See auto_doc_number! method below for usage
       xml_accessor :doc_number, :from => 'DocNumber'
       xml_accessor :invoice_link, :from => 'InvoiceLink'
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :currency_ref, :from => 'CurrencyRef', :as => BaseReference
       xml_accessor :exchange_rate, :from => 'ExchangeRate', :as => BigDecimal, :to_xml => to_xml_big_decimal
       xml_accessor :private_note, :from => 'PrivateNote'
@@ -39,9 +39,9 @@ module Quickbooks
       xml_accessor :shipping_address, :from => 'ShipAddr', :as => PhysicalAddress
       xml_accessor :class_ref, :from => 'ClassRef', :as => BaseReference
       xml_accessor :sales_term_ref, :from => 'SalesTermRef', :as => BaseReference
-      xml_accessor :due_date, :from => 'DueDate', :as => Date
+      xml_accessor :due_date, :from => 'DueDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :ship_method_ref, :from => 'ShipMethodRef', :as => BaseReference
-      xml_accessor :ship_date, :from => 'ShipDate', :as => Date
+      xml_accessor :ship_date, :from => 'ShipDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :tracking_num, :from => 'TrackingNum'
       xml_accessor :ar_account_ref, :from => 'ARAccountRef', :as => BaseReference
       xml_accessor :total, :from => 'TotalAmt', :as => BigDecimal, :to_xml => to_xml_big_decimal

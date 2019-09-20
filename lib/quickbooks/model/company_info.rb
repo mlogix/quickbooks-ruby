@@ -15,7 +15,7 @@ module Quickbooks
       xml_accessor :customer_communication_address, :from => 'CustomerCommunicationAddr', :as => PhysicalAddress
       xml_accessor :legal_address, :from => 'LegalAddr', :as => PhysicalAddress
       xml_accessor :primary_phone, :from => 'PrimaryPhone', :as => TelephoneNumber
-      xml_accessor :company_start_date, :from => 'CompanyStartDate', :as => DateTime
+      xml_accessor :company_start_date, :from => 'CompanyStartDate', :as => DateTime, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :employer_id, :from => 'EmployerId'
       xml_accessor :fiscal_year_start_month, :from => 'FiscalYearStartMonth'
       xml_accessor :country, :from => 'Country'

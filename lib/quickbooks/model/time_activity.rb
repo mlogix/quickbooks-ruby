@@ -33,8 +33,8 @@ module Quickbooks
 
       xml_accessor :attachable_ref, :from => 'AttachableRef', :as => BaseReference
       xml_accessor :department_ref, :from => 'DepartmentRef', :as => BaseReference
-      xml_accessor :start_time, :from => 'StartTime', :as => DateTime
-      xml_accessor :end_time, :from => 'EndTime', :as => DateTime
+      xml_accessor :start_time, :from => 'StartTime', :as => DateTime, :to_xml => Proc.new { |val| val&.to_s(:db) }
+      xml_accessor :end_time, :from => 'EndTime', :as => DateTime, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :time_zone, :from => 'TimeZone'
 
       reference_setters

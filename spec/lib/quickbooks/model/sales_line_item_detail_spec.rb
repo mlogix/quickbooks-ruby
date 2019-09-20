@@ -10,4 +10,10 @@ describe "Quickbooks::Model::SalesItemLineDetail" do
     detail = Quickbooks::Model::SalesItemLineDetail.new
     detail.to_xml.should_not =~ /RatePercent/
   end
+
+  it "service date should be formatted by database date format" do
+    detail = Quickbooks::Model::SalesItemLineDetail.new
+    detail.service_date = Date.new(2019, 9, 20)
+    detail.to_xml.at_css('ServiceDate').content.should == '2019-09-20'
+  end
 end

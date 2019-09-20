@@ -47,7 +47,7 @@ module Quickbooks
       xml_accessor :quantity_on_hand, :from => 'QtyOnHand', :as => BigDecimal, :to_xml => to_xml_big_decimal
       xml_accessor :sales_tax_code_ref, :from => 'SalesTaxCodeRef', :as => BaseReference
       xml_accessor :purchase_tax_code_ref, :from => 'PurchaseTaxCodeRef', :as => BaseReference
-      xml_accessor :inv_start_date, :from => 'InvStartDate', :as => Date
+      xml_accessor :inv_start_date, :from => 'InvStartDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
 
       xml_accessor :print_grouped_items?, :from => 'PrintGroupedItems'
 

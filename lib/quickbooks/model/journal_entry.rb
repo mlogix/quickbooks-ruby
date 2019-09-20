@@ -11,7 +11,7 @@ module Quickbooks
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :meta_data, :from => 'MetaData', :as => MetaData
       xml_accessor :doc_number, :from => 'DocNumber'
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :exchange_rate, :from => 'ExchangeRate', :as => BigDecimal, :to_xml => to_xml_big_decimal
       xml_accessor :private_note, :from => 'PrivateNote'
       xml_accessor :line_items, :from => 'Line', :as => [Line]

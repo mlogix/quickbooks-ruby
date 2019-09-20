@@ -13,7 +13,7 @@ module Quickbooks
       xml_accessor :source_currency_code, :from => 'SourceCurrencyCode'
       xml_accessor :target_currency_code, :from => 'TargetCurrencyCode'
       xml_accessor :rate, :from => 'Rate', :as => BigDecimal, :to_xml => to_xml_big_decimal
-      xml_accessor :as_of_date, :from => 'AsOfDate', :as => Date
+      xml_accessor :as_of_date, :from => 'AsOfDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
 
       validates_presence_of :source_currency_code, :rate, :as_of_date
       validates_length_of :source_currency_code, :is => 3

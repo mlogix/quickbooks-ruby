@@ -13,7 +13,7 @@ module Quickbooks
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :meta_data, :from => 'MetaData', :as => MetaData
       xml_accessor :doc_number, :from => 'DocNumber'
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :custom_fields, :from => 'CustomField', :as => [CustomField]
       xml_accessor :private_note, :from => 'PrivateNote'
       xml_accessor :memo, :from => 'Memo'
@@ -28,7 +28,7 @@ module Quickbooks
       xml_accessor :sales_term_ref, :from => 'SalesTermRef', :as => BaseReference
 
       xml_accessor :total, :from => 'TotalAmt', :as => BigDecimal, :to_xml => Proc.new { |val| val.to_f }
-      xml_accessor :due_date, :from => 'DueDate', :as => Date
+      xml_accessor :due_date, :from => 'DueDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :vendor_address, :from => 'VendorAddr', :as => PhysicalAddress
       xml_accessor :ship_address, :from => 'ShipAddr', :as => PhysicalAddress
       xml_accessor :ship_method_ref, :from => 'ShipMethodRef', :as => BaseReference

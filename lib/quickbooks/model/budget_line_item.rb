@@ -2,7 +2,7 @@ module Quickbooks
   module Model
     class BudgetLineItem < BaseModel
 
-      xml_accessor :date, :from => 'BudgetDate', :as => Date
+      xml_accessor :date, :from => 'BudgetDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :amount, :from => 'Amount'
       xml_accessor :account_ref, :from => 'AccountRef', :as => BaseReference
       xml_accessor :customer_ref, :from => 'CustomerRef', :as => BaseReference

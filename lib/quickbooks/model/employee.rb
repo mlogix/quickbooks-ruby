@@ -32,10 +32,10 @@ module Quickbooks
       xml_accessor :address, :from => 'PrimaryAddr', :as => PhysicalAddress
       xml_accessor :billable?, :from => 'BillableTime'
       xml_accessor :billable_rate, :from => 'BillRate', :as => BigDecimal, :to_xml => to_xml_big_decimal
-      xml_accessor :birth_date, :from => 'BirthDate', :as => Date
+      xml_accessor :birth_date, :from => 'BirthDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :gender, :from => 'Gender'
-      xml_accessor :hired_date, :from => 'HiredDate', :as => Date
-      xml_accessor :released_date, :from => 'ReleasedDate', :as => Date
+      xml_accessor :hired_date, :from => 'HiredDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
+      xml_accessor :released_date, :from => 'ReleasedDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
 
       #== Validations
       validate :names_cannot_contain_invalid_characters

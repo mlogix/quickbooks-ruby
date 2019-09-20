@@ -21,7 +21,7 @@ module Quickbooks
       xml_accessor :meta_data, :from => 'MetaData', :as => MetaData
       xml_accessor :custom_fields, :from => 'CustomField', :as => [CustomField]
       xml_accessor :doc_number, :from => 'DocNumber'
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :private_note, :from => 'PrivateNote'
 
       xml_accessor :department_ref, :from => 'DepartmentRef', :as => BaseReference
@@ -38,20 +38,20 @@ module Quickbooks
       xml_accessor :sales_term_ref, :from => 'SalesTermRef', :as => BaseReference
       xml_accessor :total, :from => 'TotalAmt', :as => BigDecimal, :to_xml => to_xml_big_decimal
       xml_accessor :ship_method_ref, :from => 'ShipMethodRef', :as => BaseReference
-      xml_accessor :ship_date, :from => 'ShipDate', :as => Date
+      xml_accessor :ship_date, :from => 'ShipDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
 
       xml_accessor :currency_ref, :from => 'CurrencyRef', :as => BaseReference
       xml_accessor :exchange_rate, :from => 'ExchangeRate', :as => BigDecimal, :to_xml => to_xml_big_decimal
-      xml_accessor :due_date, :from => 'DueDate', :as => Date
+      xml_accessor :due_date, :from => 'DueDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :deposit_to_account_ref, :from => 'DepositToAccountRef', :as => BaseReference
 
       xml_accessor :apply_tax_after_discount?, :from => 'ApplyTaxAfterDiscount'
       xml_accessor :print_status, :from => 'PrintStatus'
       xml_accessor :email_status, :from => 'EmailStatus'
       xml_accessor :bill_email, :from => 'BillEmail', :as => EmailAddress
-      xml_accessor :expiration_date, :from => 'ExpirationDate', :as => Date
+      xml_accessor :expiration_date, :from => 'ExpirationDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :accepted_by, :from => 'AcceptedBy'
-      xml_accessor :accepted_date, :from => 'AcceptedDate', :as => Date
+      xml_accessor :accepted_date, :from => 'AcceptedDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
 
       reference_setters
 

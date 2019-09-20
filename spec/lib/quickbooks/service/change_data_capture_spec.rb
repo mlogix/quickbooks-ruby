@@ -26,8 +26,9 @@ describe "Quickbooks::Service::ChangeDataCapture" do
   describe "#url_for_query" do
     it "builds a query from a list of invoices and a 'since' date" do
       date = Date.today
-      since = "changedSince=#{URI.encode_www_form_component(date)}"
-      service.url_for_query(entities, since).should == "https://quickbooks.api.intuit.com/v3/company/9991111222/cdc?entities=Bill,BillPayment,CreditMemo,Deposit,Invoice,JournalEntry,Payment,Purchase,RefundReceipt,SalesReceipt,PurchaseOrder,VendorCredit,Transfer,Estimate,Account,Budget,Class,Customer,Department,Employee,Item,PaymentMethod,Term,Vendor&changedSince=#{date.to_s}"
+      str_date = date.to_s(:db)
+      since = "changedSince=#{URI.encode_www_form_component(str_date)}"
+      service.url_for_query(entities, since).should == "https://quickbooks.api.intuit.com/v3/company/9991111222/cdc?entities=Bill,BillPayment,CreditMemo,Deposit,Invoice,JournalEntry,Payment,Purchase,RefundReceipt,SalesReceipt,PurchaseOrder,VendorCredit,Transfer,Estimate,Account,Budget,Class,Customer,Department,Employee,Item,PaymentMethod,Term,Vendor&changedSince=#{str_date}"
     end
   end
 
