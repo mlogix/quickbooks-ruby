@@ -8,7 +8,7 @@ module Quickbooks
       xml_accessor :id, :from => 'Id'
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :meta_data, :from => 'MetaData', :as => MetaData
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :currency_ref, :from => 'CurrencyRef', :as => BaseReference
       xml_accessor :private_note, :from => 'PrivateNote'
       xml_accessor :from_account_ref, :from => 'FromAccountRef', :as => BaseReference

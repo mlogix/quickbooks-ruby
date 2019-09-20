@@ -12,7 +12,7 @@ module Quickbooks
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :meta_data, :from => 'MetaData', :as => MetaData
       xml_accessor :doc_number, :from => 'DocNumber'
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :department_ref, :from => 'DepartmentRef', :as => BaseReference
 
       xml_accessor :line_items, :from => 'Line', :as => [BillLineItem]
@@ -25,7 +25,7 @@ module Quickbooks
       xml_accessor :attachable_ref, :from => 'AttachableRef', :as => BaseReference
       xml_accessor :ap_account_ref, :from => 'APAccountRef', :as => BaseReference
 
-      xml_accessor :due_date, :from => 'DueDate', :as => Date
+      xml_accessor :due_date, :from => 'DueDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :remit_to_address, :from => 'RemitToAddr', :as => PhysicalAddress
       xml_accessor :ship_address, :from => 'ShipAddr', :as => PhysicalAddress
       xml_accessor :exchange_rate, :from => 'ExchangeRate', :as => BigDecimal, :to_xml => to_xml_big_decimal

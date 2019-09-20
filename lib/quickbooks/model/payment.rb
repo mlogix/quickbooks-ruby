@@ -10,7 +10,7 @@ module Quickbooks
       xml_accessor :id, :from => 'Id'
       xml_accessor :sync_token, :from => 'SyncToken', :as => Integer
       xml_accessor :meta_data, :from => 'MetaData', :as => MetaData
-      xml_accessor :txn_date, :from => 'TxnDate', :as => Date
+      xml_accessor :txn_date, :from => 'TxnDate', :as => Date, :to_xml => Proc.new { |val| val&.to_s(:db) }
       xml_accessor :private_note, :from => 'PrivateNote'
       xml_accessor :txn_status, :from => 'TxnStatus'
       xml_accessor :line_items, :from => 'Line', :as => [Line]
